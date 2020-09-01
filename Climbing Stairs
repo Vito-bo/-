@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int jumpFloorII(int number) {
+        /*
+        //方法1：动态规划  时间复杂度:O(n)
+        //状态
+        //    子状态：跳上1级，2级，3级.....n级台阶的跳法数
+        //    F(n):还剩n个台阶的跳法数
+        
+        //状态递推
+        //    n级台阶，第一步有n种跳法：跳1级，跳2级....跳到n级
+        //    跳1级：剩下n-1级，则剩下的跳法数是F(n-1)
+        //    跳2级：剩下n-2级，则剩下的跳法数是F(n-2)
+        //    F(n)=F(n-1)+F(n-2)+...F(n-n)
+        //    F(n)=F(n-1)+F(n-2)+...F(0)
+        //    F(n-1)=F(n-2)+...+F(0)
+        //    F(n)=2*F(n-1)
+        
+        //初始值
+        //F(1)=1;
+        //F(2)=2*F(1)=2;
+        //F(3)=2*F(2)=4;
+        //等比数列
+        
+        //返回结果
+        //F(n)
+        if(number<=0)
+            return 0;
+        if(number==1)
+            return 1;
+        int ret=1;
+        for(int i=2;i<=number;i++)
+        {
+            ret*=2;
+        }
+        return ret;
+        */
+        //方法2：移位操作：O(1)
+        if(number<=0)
+            return 0;
+        return 1<<(number-1);
+    }
+};
