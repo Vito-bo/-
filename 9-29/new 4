@@ -1,0 +1,45 @@
+
+//剑指offer 04-二维数组中的查找
+//方法1：二分查找变形
+class Solution {
+public:
+    bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty() || matrix[0].empty()) 
+            return false;
+        int rowsize=matrix.size();  //行
+        int colsize=matrix[0].size(); //列
+        int row=0;
+        int col=colsize-1;
+		//从右上角开始判断
+        while(row<rowsize && col>=0)
+        {
+            if(target == matrix[row][col]) 
+                return true;
+            else if(target < matrix[row][col])
+                col--;
+            else
+                row++;
+        }
+        return false;
+    }
+};
+
+//方法2：两重循环暴力求解
+class Solution {
+public:
+    bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty() || matrix[0].empty()) 
+            return false;
+        int rowsize=matrix.size();  //行
+        int colsize=matrix[0].size(); //列
+        for(int i=0;i<rowsize;++i)
+        {
+            for(int j=0;j<colsize;++j)
+            {
+                if(target==matrix[i][j])
+                return true;
+            }
+        }
+        return false;
+    }
+};

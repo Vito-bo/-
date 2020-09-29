@@ -1,0 +1,32 @@
+//剑指offer-03-数组中重复的数字
+//方法1：排序后判断有无重复元素
+class Solution {
+public:
+    int findRepeatNumber(vector<int>& nums) {
+        int len=nums.size();
+		//对nums进行升序排序
+        sort(nums.begin(), nums.end());
+        for(int i=0;i<len;++i)
+        {
+			//排好序后直接返回重复元素
+            if(nums[i]==nums[i+1])
+                return nums[i];
+        }
+        return -1;
+    }
+};
+
+//方法2：哈希映射
+class Solution {
+public:
+    int findRepeatNumber(vector<int>& nums) {
+		//使用哈希表记录数组中的各个数字，当查到重复元素直接返回
+        unorder_map<int, bool> map;
+		for(int num:nums)
+		{
+			if(map[num])
+				return num;
+			map[num] = true;
+		}
+		return -1;
+};

@@ -1,0 +1,37 @@
+
+//力扣-剑指offer-09双栈实现队列
+
+//实现思路：栈s1当做队列，借助栈s2辅助栈s1实现队列的功能先进先出
+class CQueue {
+private:
+	stack<int> s1;
+	stack<int> s2;
+public:
+    CQueue() {}
+    
+    void appendTail(int value) { 
+		s1.push(value);
+    }
+    
+    int deleteHead() {  //头删
+        if(s1.empty())
+            return -1;
+		
+		//头删
+		while(!s1.empty())
+		{
+			int tmp=s1.top();
+			s1.pop();
+			s2.push(tmp);
+		}
+		int res=s2.top();
+		s2.pop();
+		while(!s2.empty())
+		{
+            int tmp=s2.top();
+			s2.pop();
+            s1.push(tmp);
+		}
+		return res;
+    }
+};
